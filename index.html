@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>My Home</title>
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      margin: 0;
+      background: #1a1a2e;
+      color: #fff;
+      font-family: sans-serif;
+    }
+    input[type="text"] {
+      width: 400px;
+      padding: 12px;
+      border-radius: 8px;
+      border: none;
+      font-size: 16px;
+    }
+    .shortcuts {
+      display: flex;
+      gap: 20px;
+      margin-top: 40px;
+    }
+    .shortcut {
+      width: 80px;
+      height: 80px;
+      background: #16213e;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      color: #fff;
+      font-size: 13px;
+    }
+  </style>
+</head>
+<body>
+  <input type="text" placeholder="Search the web..."
+         onkeydown="if(event.key==='Enter')window.location='https://www.google.com/search?q='+this.value">
+  <div class="shortcuts">
+    <a class="shortcut" href="https://youtube.com">YouTube</a>
+    <a class="shortcut" href="https://reddit.com">Reddit</a>
+    <a class="shortcut" href="https://github.com">GitHub</a>
+    <a class="shortcut" href="https://discord.com">Discord</a>
+  </div>
+</body>
+</html>   
