@@ -5,6 +5,23 @@
   <meta charset="UTF-8">
   <title>My Home</title>
   <style>
+    .weather-alert {
+  position: fixed;
+  bottom: 70px;
+  left: 30px;
+  font-family: 'PT Serif', serif;
+  font-size: 12px;
+  color: #ccc;
+  max-width: 250px;
+}
+.weather-alert .event {
+  color: #ff6b6b;
+  font-weight: bold;
+  font-size: 13px;
+}
+.weather-alert .area {
+  color: #aaa;
+}   
     .bottom-label {
   position: fixed;
   bottom: 75px;
@@ -147,6 +164,28 @@ document.addEventListener('click', function(e) {
     setTimeout(() => sparkle.remove(), 700);
   }
 });
+</script> 
+  <script>
+async function fetchAlert() {
+  try {
+    const res = await fetch('https://api.weather.gov/alerts/active?limit=1');
+    const data = await res.json();
+    const el = document.getElementById('weather-alert');
+    if (data.features.length > 0) {
+      const a = data.features[0].properties;
+      el.innerHTML = '<div class="event">' + a.event + '</div>' +
+        '<div class="area">' + a.areaDesc + '</div>' +
+        '<div class="area">' + a.senderName + '</div>';
+    } else {
+      el.innerHTML = '<div class="area">No active warnings</div>';
+    }
+  } catch (e) {
+    document.getElementById('weather-alert').innerHTML =
+      '<div class="area">Unable to load</div>';
+  }
+}
+fetchAlert();
+setInterval(fetchAlert, 300000); // refreshes every 5 minutes
 </script>   
    <ul class="sidebar">
   <li><a href="https://soundcloud.com/razorblaydezzwx">SoundCloud</a></li>
