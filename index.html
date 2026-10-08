@@ -142,6 +142,7 @@
   </style>
 </head>
 <body>
+  <div class="weather-alert" id="weather-alert"></div>   
   <div class="bottom-label">Weather</div>   
   <ul class="bottom-bar">
   <li><a href="https://web.weatherwise.app/">Weatherwise</a></li>
@@ -168,7 +169,7 @@ document.addEventListener('click', function(e) {
   <script>
 async function fetchAlert() {
   try {
-    const res = await fetch('https://api.weather.gov/alerts/active?limit=1');
+    const res = await fetch('https://api.weather.gov/alerts/active');
     const data = await res.json();
     const el = document.getElementById('weather-alert');
     if (data.features.length > 0) {
